@@ -1,0 +1,26 @@
+<!-- 评论区 -->
+
+<view class="ListContainer">
+    <view class="header">
+        <text bindtap="showHotComment" style="{{hotOrLatest==='hot' ? 'border-bottom: 1rpx solid #727272;font-weight: bold;' : ''}}" data-type="hot" class="hotComment">热门评论</text>
+        <text bindtap="showLatestComment" style="{{hotOrLatest==='latest' ? 'border-bottom: 1rpx solid #727272;font-weight: bold;' : ''}}" data-type="latest" class="latestComment">最新评论</text>
+    </view>
+
+    <!-- 评论列表 -->
+    <scroll-view scroll-y class="commentList">
+        <!-- 每一条评论 -->
+        <view class="listItem" wx:for="{{hotOrLatest==='hot' ? hotComments : latestComments}}" wx:key="commentId">
+            <view class="userInfo">
+                <image class="touxiang" src="{{item.user.avatarUrl}}"></image>
+                <text class="userName">{{item.user.nickname}} - {{item.timeStr}}</text>
+            </view>
+            <text class="commentContent">{{item.content}}</text>
+            <view class="iconfont icon-dianzan2 dianzan">
+                <text>{{item.likedCount}}</text>
+            </view>
+            <!--            <text class="count"></text>-->
+        </view>
+    </scroll-view>
+
+</view>
+

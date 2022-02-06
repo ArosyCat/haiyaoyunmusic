@@ -1,0 +1,33 @@
+<!--pages/playlist/playlist.wxml-->
+<view class="listSongContainer">
+  <!-- 头部 -->
+  <view class="header">
+    <image src="{{listImg}}"></image>
+    <text class="discribe">{{discribe}}</text>
+  </view>
+  <!-- 列表区域 -->
+  <view class="ListContainer">
+    <view class="listHeader">
+      <view class="playAllContainer">
+        <text class="playAllText">播放全部</text>
+        <image class="playAll" src="/static/images/recommendSong/111.png"></image>
+      </view>
+      <view class="shoucangContainer" bindtap="handleCollect"
+        style="{{isCollect ? 'background: red;color: white' : ''}}">
+        <image class="icon-xihuan" src="{{isCollect ? '/static/images/recommendSong/icon-shoucang2.png' : '/static/images/recommendSong/icon_shoucang.png'}}"></image>
+        <text class="shoucang">收藏歌单</text>
+      </view>
+    </view>
+    <!-- 歌曲 -->
+    <scroll-view scroll-y="true" class="listScroll">
+      <view class="scrollItem" wx:for="{{playlist}}" wx:key="id" data-index="{{index}}" data-song="{{item}}" bindtap="toSongDetail">
+        <image src="{{item.al.picUrl}}"></image>
+        <view class="musicInfo">
+          <text class="musicName">{{item.name}}</text>
+          <text class="musicAuthor">{{item.ar[0].name}} - {{item.al.name}}</text>
+        </view>
+        <text class="iconfont icon-icon"></text>
+      </view>
+    </scroll-view>
+  </view>
+</view>

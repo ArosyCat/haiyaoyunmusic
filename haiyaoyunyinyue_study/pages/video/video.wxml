@@ -1,0 +1,72 @@
+<view class="videoContainer">
+    <!-- 头部区域 -->
+    <view class="header">
+        <image src="/static/images/video/shouye.png" bindtap="toIndex"></image>
+        <view class="search" bindtap="toSearchSongs">
+            搜索歌曲
+        </view>
+        <image src="/static/images/video/header1.png" bindtap="toSongDetail"></image>
+    </view>
+
+    <!-- 导航区域 -->
+    <scroll-view
+            scroll-into-view="{{'scroll'+navId}}"
+            scroll-x class="navScroll"
+            enable-flex
+            scroll-with-animation="true">
+        <view id="{{'scroll'+item.id}}" class="navItem" wx:for="{{videoGroupList}}" wx:key="id">
+            <view class="navContent {{navId === item.id?'active': ''}}" bindtap="changNav" id="{{item.id}}" data-id="{{item.id}}">
+                {{item.name}}
+            </view>
+        </view>
+    </scroll-view>
+
+    <!-- 视频列表区域 -->
+    <scroll-view
+            scroll-y
+            class="videoScroll"
+            refresher-enabled="true"
+            bindrefresherrefresh="handleRefresher"
+            refresher-triggered="{{isTriggered}}"
+            bindscrolltolower="handleToLower"
+    >
+        <view class="videoItem" wx:for="{{videoList}}" wx:key="id">
+            <video src="{{item.data.urlInfo.url}}"
+                   bindplay="handlePlay"
+                   id="{{item.data.vid}}"
+                   poster="{{item.data.coverUrl}}"
+                   class="common"
+                   wx:if="{{videoId === item.data.vid}}"
+                   object-fit="cover"
+                   bindtimeupdate="handleTimeUpdate"
+                   bindended="handleEnded"
+            ></video>
+
+            <!-- 视频播放性能优化：使用image图片代替video标签 -->
+            <image wx:else bindtap="handlePlay" id="{{item.data.vid}}" class="common" src="{{item.data.coverUrl}}"></image>
+
+            <!-- 视频标题 -->
+            <view class="content">{{item.data.title}}</view>
+            <!-- 视频下方的点赞、评论和更多选项 -->
+            <view class="footer">
+                <image class="avatar" src="{{item.data.creator.avatarUrl}}"></image>
+                <text class="nickName">{{item.data.creator.nickname}}</text>
+                <view class="comments_praised">
+                    <text class="item">
+                        <text class="iconfont icon-dianzan"></text>
+                        <text class="count">{{item.data.praisedCount}}</text>
+                    </text>
+                    <text class="item">
+                        <text class="iconfont icon-pinglun1"></text>
+                        <text class="count">{{item.data.commentCount}}</text>
+                    </text>
+                    <button class="item btn" open-type="share" id="{{item.data.vid}}">
+                        <text class="iconfont icon-zhuanfa"></text>
+                    </button>
+                </view>
+            </view>
+
+        </view>
+    </scroll-view>
+
+</view>

@@ -1,0 +1,79 @@
+<!-- 个人主页 -->
+<view class="indexContainer">
+
+    <view class="backgroundPic">
+        <image src="{{userInfo.backgroundUrl}}"></image>
+    </view>
+
+    <view class="picFrame">
+        <!-- 头像 -->
+        <view class="Image">
+            <image src="{{userInfo.avatarUrl}}"></image>
+        </view>
+    </view>
+
+    <!-- 个人信息1 -->
+    <view class="personInfo">
+        <view class="levelAndName">
+            <!-- 等级信息 -->
+            <text style="position: relative;top: 20rpx;font-size: 25rpx;color: #e03a24;border: 1rpx solid #f0f0f0;border-radius: 10rpx;background: #f0f0f0;height: 30rpx;line-height: 30rpx;font-weight: bold;">Lv.{{userDetail.level}}</text>
+            <!-- 名称 -->
+            <view class="name">
+                <text>{{userInfo.nickname}}</text>
+                <image style="width: 50rpx; height: 50rpx;" src="{{userInfo ? '/static/images/tabs/male.png' : '/static/images/tabs/female.png'}}"></image>
+            </view>
+        </view>
+        <view class="createTime">
+            <text style="color: #888888;">{{createTime}}</text>
+        </view>
+        <!-- 个性签名 -->
+        <view class="sign">
+            <text style="color: #888888;">个人介绍：{{userDetail.profile.signature}}</text>
+        </view>
+    </view>
+
+    <!-- 个人信息2 -->
+    <view class="personInfo2">
+        <!-- 其他信息（粉丝数，关注数，动态） -->
+        <view class="otherInfo">
+            <!-- 关注数 -->
+            <view class="textFrame follows">
+                <text>关注 {{userDetail.profile.follows}}</text>
+            </view>
+            <!-- 粉丝数 -->
+            <view class="textFrame followeds">
+                <text>粉丝 {{userDetail.profile.followeds}}</text>
+            </view>
+            <!-- 动态 -->
+            <view class="textFrame eventCount">
+                <text>动态 {{userDetail.profile.eventCount}}</text>
+            </view>
+        </view>
+
+        <!-- 其他信息2（听歌次数，听歌时间） -->
+        <view class="otherInfo2" style="display: flex;width: 100%;">
+            <!-- 我创建的 -->
+            <view class="myCreate">
+                <text style="margin-left: 25rpx; color: #373737;border-bottom: 1rpx solid #888888;">我创建的</text>
+            </view>
+            <!-- 听歌次数 -->
+            <view class="listenSongs">
+                <text style="position: absolute;color: #888888; right: 20rpx;">听歌次数：{{userDetail.listenSongs}}</text>
+            </view>
+        </view>
+
+        <scroll-view scroll-y class="personalPlayList" >
+            <view class="myView">
+                <view class="personalPlayItem" wx:for="{{personalPlayList}}" wx:key="id"
+                      bindtap="toShowPersonalPlayListDetail" id="{{item.id}}">
+                    <image class="personalPlayPic" src="{{item.coverImgUrl}}"></image>
+                    <text class="personalPlayTitle">{{item.name}}</text>
+                </view>
+            </view>
+        </scroll-view>
+
+    </view>
+
+</view>
+
+

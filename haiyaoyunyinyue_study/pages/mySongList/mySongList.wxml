@@ -1,0 +1,98 @@
+<!-- 我的音乐 -->
+<view class="recommendSongContainer">
+    <!-- 头部图片 -->
+    <view class="header">
+
+        <image src="{{firstPicUrl}}"></image>
+    </view>
+
+    <view
+            class="cover-container"
+            bindtouchstart="handleTouchStart"
+            bindtouchmove="handleTouchMove"
+            bindtouchend="handleTouchEnd"
+            style="transform: {{coverTransform}}; transition: {{coverTransition}}"
+    >
+        <!-- 列表区域 -->
+        <view class="ListContainer">
+            <view class="listHeader">
+                <view class="playAllContainer" hover="true" hover-class="detail-hover" bindtap="playAll">
+                    <text bindtap="playAll" class="playAllText">播放全部</text>
+                    <image class="playAll" src="/static/images/recommendSong/111.png" bindtap="playAll"></image>
+                </view>
+                <text wx:if="{{isMultipleModel}}" bindtap="toPlayMultipleChoice" class="playMultipleChoiceBtn">播放已选</text>
+                <text class="changeMore" bindtap="multipleChoice">{{isMultipleModel ? '取消' : '多选'}}</text>
+            </view>
+
+            <!-- 内容区 -->
+            <scroll-view scroll-y class="listScroll">
+                <view class="scrollItem" wx:for="{{likeList}}" wx:key="id" data-index="{{index}}" data-song='{{item[0]}}'
+                      bindtap="{{!isMultipleModel ? 'toSongDetail' : 'handleChoice'}}"
+                      style="{{isMultipleModel && selectedIndexList[index] ? 'border: 1rpx solid #eee' : ''}}">
+                    <image src="{{item[0].al.picUrl}}"></image>
+                    <view class="musicInfo">
+                        <text class="musicName">{{item[0].name}}</text>
+                        <text class="author">{{item[0].ar[0].name}} - {{item[0].al.name}}</text>
+                    </view>
+                    <text wx:if="{{!isMultipleModel}}" class="iconfont icon-gengduo2" catchtap="toShowMoreFunction" data-song="{{item[0]}}"></text>
+                    <image wx:else class="icon-xuanze" src="{{selectedIndexList[index] ? '/static/images/recommendSong/xuanze.png' : '/static/images/recommendSong/weixuanze.png'}}"></image>
+                </view>
+            </scroll-view>
+        </view>
+
+    </view>
+
+    <!-- 底部 -->
+    <view class="discContainer">
+        <!-- 底部磁盘 -->
+        <view class="myDisc">
+            <image src="/static/images/song/444.png"></image>
+            <image wx:if="{{song.al.picUrl}}" class="picUrl" src="{{song.al.picUrl}}"
+                   data-song="{{song}}" data-index="{{index}}" bindtap="toSongDetail"></image>
+            <image wx:else class="picUrl" src="/static/images/song/disc.png"></image>
+        </view>
+        <!-- 底部歌曲详情 -->
+        <view class="songInfo">
+            <text class="songName">{{song.name}}</text>
+            <text class="songAuthor">{{song.ar[0].name}}</text>
+        </view>
+        <!-- 底部播放 / 暂停等功能 -->
+        <view class="menus">
+            <view class="iconfont icon-shangyishou" id="pre" bindtap="handleSwitch"></view>
+            <view class="iconfont {{isPlay ? 'icon-zanting' : 'icon-bofang'}} isPlay" bindtap="handlePlay"></view>
+            <view class="iconfont icon-xiayishou" id="next" bindtap="handleSwitch"></view>
+        </view>
+    </view>
+
+    <!-- 弹层组件 -->
+    <view class="showMoreFunction" hidden="{{isClose}}">
+        <view class="showMore">
+            <!-- 搜索歌曲 -->
+            <view class="search searchSong" bindtap="toSearch" hover hover-class="detail-hover" data-value="{{song.name}}">
+                <view class="iconfont icon-gequxinshang searchIcon"></view>
+                <text>搜索歌曲 - {{song.name}}</text>
+            </view>
+            <!-- 搜索歌手 -->
+            <view class="search searchSinger" bindtap="toSearch" hover hover-class="detail-hover" data-value="{{song.artists[0].name}}">
+                <view class="iconfont icon-chazhaoyonghu searchIcon"></view>
+                <text>搜索歌手 - {{song.ar[0].name}}</text>
+            </view>
+            <!-- 相似歌曲推荐 -->
+            <view class="search similarRecommend" bindtap="toPlaySimilarSong" hover hover-class="detail-hover">
+                <view class="iconfont icon-xiangsituijian searchIcon"></view>
+                <text>相似歌曲推荐</text>
+            </view>
+            <!-- 相似歌手推荐 -->
+            <view class="search" bindtap="toSearchSimilarSinger" hover hover-class="detail-hover" data-value="{{song.ar[0].id}}">
+                <view class="iconfont icon-xiangsituijian searchIcon"></view>
+                <text>与{{song.ar[0].name}}风格相似的歌手</text>
+            </view>
+
+            <!-- 关闭弹框 -->
+            <view class="close" bindtap="toClose">
+                <view class="iconfont icon-close"></view>
+            </view>
+        </view>
+    </view>
+
+</view>

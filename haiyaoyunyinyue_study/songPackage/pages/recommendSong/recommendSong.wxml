@@ -1,0 +1,77 @@
+<view class="recommendSongContainer">
+    <!-- 头部 -->
+    <view class="header">
+        <image src="/static/images/recommendSong/222.jpg"></image>
+        <view class="date">
+            <text class="month">{{month}} / </text>
+            <text class="day">{{day}}</text>
+        </view>
+    </view>
+
+    <!-- 列表区域 -->
+    <view class="ListContainer">
+        <view class="listHeader">
+            <view class="playAllContainer" hover="true" hover-class="detail-hover" bindtap="playAll">
+                <text bindtap="playAll" class="playAllText">播放全部</text>
+                <image class="playAll" src="/static/images/recommendSong/111.png"></image>
+            </view>
+            <!--
+            多选功能实现思路：
+            点击多选进入多选模式，模式包括：
+            ① 点击多选，多选键内容变为播放已选按钮
+            ② 每个Item都取消跳转事件，改为点击后后方出现小方格，选中三点变为 √，再点一下则取消
+            ③ 点击Item显示Item的边框，将Item的id回传过去，放入一个空列表中
+            ④ 点击播放已选按钮则实现空列表的上一首下一首功能，然后播放第一首
+             -->
+            <text wx:if="{{isMultipleModel}}" bindtap="toPlayMultipleChoice" class="playMultipleChoiceBtn">播放已选</text>
+            <text class="changeMore" bindtap="multipleChoice">{{isMultipleModel ? '取消' : '多选'}}</text>
+        </view>
+
+        <!-- 内容区 -->
+        <scroll-view scroll-y class="listScroll">
+            <view class="scrollItem" wx:for="{{recommendList}}" wx:key="id" data-index="{{index}}" data-song='{{item}}'
+                  bindtap="{{!isMultipleModel ? 'toSongDetail' : 'handleChoice'}}"
+                style="{{isMultipleModel && selectedIndexList[index] ? 'border: 1rpx solid #eee' : ''}}">
+                <image src="{{item.album.picUrl}}"></image>
+                <view class="musicInfo">
+                    <text class="musicName">{{item.name}}</text>
+                    <text class="author">{{item.artists[0].name}} - {{item.album.name}}</text>
+                </view>
+                <text wx:if="{{!isMultipleModel}}" class="iconfont icon-gengduo2" catchtap="toShowMoreFunction" data-song="{{item}}"></text>
+                <image wx:else class="icon-xuanze" src="{{selectedIndexList[index] ? '/static/images/recommendSong/xuanze.png' : '/static/images/recommendSong/weixuanze.png'}}"></image>
+            </view>
+        </scroll-view>
+    </view>
+
+    <!-- 弹层组件 -->
+    <view class="showMoreFunction" hidden="{{isClose}}">
+        <view class="showMore">
+            <!-- 搜索歌曲 -->
+            <view class="search searchSong" bindtap="toSearch" hover hover-class="detail-hover" data-value="{{song.name}}">
+                <view class="iconfont icon-gequxinshang searchIcon"></view>
+                <text>搜索歌曲 - {{song.name}}</text>
+            </view>
+            <!-- 搜索歌手 -->
+            <view class="search searchSinger" bindtap="toSearch" hover hover-class="detail-hover" data-value="{{song.artists[0].name}}">
+                <view class="iconfont icon-chazhaoyonghu searchIcon"></view>
+                <text>搜索歌手 - {{song.artists[0].name}}</text>
+            </view>
+            <!-- 相似歌曲推荐 -->
+            <view class="search similarRecommend" bindtap="toPlaySimilarSong" hover hover-class="detail-hover">
+                <view class="iconfont icon-xiangsituijian searchIcon"></view>
+                <text>相似歌曲推荐</text>
+            </view>
+            <!-- 相似歌手推荐 -->
+            <view class="search" bindtap="toSearchSimilarSinger" hover hover-class="detail-hover" data-value="{{song.artists[0].id}}">
+                <view class="iconfont icon-xiangsituijian searchIcon"></view>
+                <text>与{{song.artists[0].name}}风格相似的歌手</text>
+            </view>
+
+            <!-- 关闭弹框 -->
+            <view class="close" bindtap="toClose">
+                <view class="iconfont icon-close"></view>
+            </view>
+        </view>
+    </view>
+
+</view>

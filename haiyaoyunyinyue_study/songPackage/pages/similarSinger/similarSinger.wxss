@@ -1,0 +1,96 @@
+/* 整个页面布局 */
+.pageContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.pageContainer .singerInfo {
+    height: 370rpx;
+}
+
+.pageContainer .singerInfo .pic {
+    height: 300rpx;
+}
+
+.pageContainer .singerInfo .pic image {
+    width: 240rpx;
+    height: 240rpx;
+    line-height: 240rpx;
+    margin: 30rpx 35%;
+    border-radius: 50%;
+}
+
+.pageContainer .singerName{
+    text-align: center;
+}
+
+.pageContainer .singerName image {
+    height: 40rpx;
+    line-height: 40rpx;
+    width: 40rpx;
+    position: relative;
+    right: 20rpx;
+    top: 5rpx;
+    float: right;
+}
+
+.content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-overflow: -o-ellipsis-lastline;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    padding: 0 25rpx;
+    font-size: 30rpx;
+    color: #888888;
+}
+.content.on {
+    display: block;
+    text-overflow: clip;
+    overflow: visible;
+}
+
+.pageContainer .listScroll {
+}
+.pageContainer .listScroll .scrollItem {
+    border: 1rpx solid #f4f4f4;
+    border-radius: 20rpx;
+    margin: 8rpx 20rpx;
+}
+.pageContainer .listScroll .scrollItem .first{
+    height: 200rpx;
+    line-height: 200rpx;
+    display: flex;
+}
+
+.pageContainer .listScroll .scrollItem image {
+    width: 160rpx;
+    height: 160rpx;
+    line-height: 120rpx;
+    border-radius: 50%;
+    margin: 20rpx 30rpx;
+}
+
+.searchSingerInfo {
+    width: 100%;
+}
+
+.pageContainer .listScroll .scrollItem .searchSingerInfo ._isOpen {
+    height: 40rpx;
+    line-height: 40rpx;
+    width: 40rpx;
+    position: relative;
+    top: 30%;
+    float: right;
+}
+
+.pageContainer .listScroll .scrollItem .first {
+    display: flex;
+}
+
+.pageContainer .listScroll .scrollItem .otherIntro {
+
+}

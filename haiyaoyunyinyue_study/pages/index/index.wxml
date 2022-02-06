@@ -1,0 +1,88 @@
+<view class="indexContainer">
+  <view class="header">
+    <image src="/static/images/video/header2.png" bindtap="toVideo"></image>
+    <view class="search" bindtap="toSearchSongs">
+      搜索歌曲
+    </view>
+    <image src="/static/images/video/header1.png" bindtap="toSongDetail"></image>
+  </view>
+
+  <scroll-view scroll-y class="IndexScroll">
+    <!-- 轮播图区域 -->
+    <swiper class="banners" indicator-dots indicator-color="ivory" indicator-active-color="#d43c33"
+            autoplay="true" interval="3000" circular="true">
+      <swiper-item wx:key="bannerId" wx:for="{{bannerList}}" class="swiper-item">
+        <image src="{{item.pic}}" id="{{index}}" bindtap="toPlaySong"></image>
+      </swiper-item>
+    </swiper>
+
+    <!-- 五个图标导航区域 -->
+    <view class="navContainer">
+      <view class="navItem" bindtap="toRecommendSongIndex">
+        <text class="iconfont icon-icon-2"></text>
+        <text>每日推荐</text>
+      </view>
+      <view class="navItem" bindtap="toMySongList">
+        <text class="iconfont icon-gedan1"></text>
+        <text>我的音乐</text>
+      </view>
+      <view class="navItem" bindtap="toTopList">
+        <text class="iconfont icon-paihangbang"></text>
+        <text>排行榜</text>
+      </view>
+      <view class="navItem" bindtap="toRadioList">
+        <text class="iconfont icon-diantai"></text>
+        <text>电台</text>
+      </view>
+      <view class="navItem" bindtap="toMVTopList">
+        <text class="iconfont icon-zhibo2"></text>
+        <text>MV</text>
+      </view>
+    </view>
+
+    <view class="personalFM" hover="true" hover-class="detail-hover" bindtap="toPersonalFM">
+      <image class="playAll" src="/static/images/recommendSong/111.png"></image>
+      <text>私人FM</text>
+      <view class="iconfont icon-24gl-playlistMusic2 playListMusic"></view>
+    </view>
+
+    <!-- 推荐歌单区域 -->
+    <view class="recommendContainer">
+      <!-- 头部 -->
+      <NavHeader title="猜你喜欢" nav="为你精心推荐"></NavHeader>
+
+      <!-- 内容区 -->
+      <scroll-view class="recommendScroll" enable-flex scroll-x>
+        <!-- 滑块 -->
+        <view class="scrollItem" wx:for="{{recommendList}}" wx:key="id" wx:for-item="recommendItem">
+          <image id="{{index}}" src="{{recommendItem.picUrl}}" bindtap="toPlayList"></image>
+          <text id="{{index}}" bindtap="toPlayList">{{recommendItem.name}}</text>
+        </view>
+      </scroll-view>
+    </view>
+
+    <!-- 排行榜区域 -->
+    <view class="topList">
+      <!-- 头部 -->
+      <NavHeader title="排行榜" nav="热歌风向标"></NavHeader>
+      <!-- 内容 -->
+      <swiper class="topListSwiper" circular next-margin="50rpx" previous-margin="50rpx">
+        <swiper-item wx:for="{{topList}}" wx:key="name" id="{{index}}" bindtap="confirmTopIndex">
+          <view class="swiperItem">
+            <view class="title">{{item.name}}</view>
+            <view id="{{index}}" class="musicItem" wx:for="{{item.tracks}}" wx:key="id" wx:for-item="musicItem" bindtap="toPlayTopSong">
+              <image src="{{musicItem.al.picUrl}}"></image>
+              <text class="count">{{index + 1}}</text>
+              <text class="musicName">{{musicItem.name}}</text>
+            </view>
+          </view>
+        </swiper-item>
+      </swiper>
+
+    </view>
+  </scroll-view>
+
+
+</view>
+
+

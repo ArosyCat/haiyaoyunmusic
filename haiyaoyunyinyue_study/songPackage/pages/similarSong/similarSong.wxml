@@ -1,0 +1,45 @@
+<!-- 相似歌曲推荐 -->
+<view class="pageContainer">
+    <!--    -->
+    <!-- 歌名和歌手 -->
+    <view class="songInfo">
+        <text class="songName marquee">{{currentSong.name}}{{firstSong.alias[0] ? ' - ' : ''}}{{currentSong.alias[0]}}</text>
+        <text class="songAuthor">{{currentSong.artists[0].name}}</text>
+    </view>
+
+    <view class="imageContainer">
+        <!-- 歌曲封面图 -->
+        <image class="songPic" src="{{currentSong.album.picUrl}}"></image>
+    </view>
+
+    <!-- 歌词 -->
+    <view class="scrollLrc">
+        <text>{{currentLyric}}</text>
+    </view>
+
+    <!-- 进度条控制区域 -->
+    <view class="progressControl">
+        <text>{{currentTime}}</text>
+        <!-- 总进度条 -->
+        <view class="barControl">
+            <!-- 实时进度条 -->
+            <view class="audio-currentTime-Bar" style="width: {{currentWidth + 'rpx'}}">
+                <!-- 小圆球 -->
+                <view class="audio-circle"></view>
+            </view>
+        </view>
+        <text>{{durationTime}}</text>
+    </view>
+
+    <!-- 底部菜单 -->
+    <!-- 底部控制播放区域 -->
+    <view class="musicControl">
+        <text class="iconfont icon-pinglun-" bindtap="toComment"></text>
+        <text class="iconfont {{isPlay?'icon-zanting':'icon-bofang'}} big" bindtap="handleMusicPlay"></text>
+        <text class="iconfont icon-xiayishou" id="next" bindtap="handleSwitch"></text>
+    </view>
+</view>
+
+
+
+

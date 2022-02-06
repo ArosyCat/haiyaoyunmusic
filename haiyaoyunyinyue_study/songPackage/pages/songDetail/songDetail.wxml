@@ -1,0 +1,41 @@
+<view class="songDetailContainer">
+    <!-- 歌曲名称 -->
+    <view class="musicName">{{song.name}}</view>
+    <!-- 歌手名称 -->
+    <view class="author">{{song.ar[0].name}}</view>
+    <!--    <image class="needle" ></image>-->
+
+    <!-- 旋转磁盘 -->
+    <view class="discContainer {{isPlay ?  'disAnimation':'paused'}}">
+        <image class="disc" src="/static/images/song/444.png" bindtap="displayLyric"></image>
+        <image class="musicImg" src="{{song.al ? song.al.picUrl : song.album.picUrl}}"></image>
+    </view>
+    <!-- 歌词 -->
+    <view class="scrollLrc">
+        <text>{{currentLyric}}</text>
+    </view>
+
+    <!-- 进度条控制区域 -->
+    <view class="progressControl">
+        <text>{{currentTime}}</text>
+        <!-- 总进度条 -->
+        <view class="barControl">
+            <!-- 实时进度条 -->
+            <view class="audio-currentTime-Bar" style="width: {{currentWidth + 'rpx'}}">
+                <!-- 小圆球 -->
+                <view class="audio-circle"></view>
+            </view>
+        </view>
+        <text>{{durationTime}}</text>
+    </view>
+
+    <!-- 底部控制播放区域 -->
+    <view class="musicControl">
+        <text class="iconfont {{playModel===0?'icon-liebiaoxunhuan':(playModel===1?'icon-danquxunhuan':'icon-suijibofang')}}" bindtap="handlePlayModel"></text>
+        <text class="iconfont icon-shangyishou" id="pre" bindtap="handleSwitch"></text>
+        <text class="iconfont {{isPlay?'icon-zanting':'icon-bofang'}} big" bindtap="handleMusicPlay"></text>
+        <text class="iconfont icon-xiayishou" id="next" bindtap="handleSwitch"></text>
+        <text class="iconfont icon-pinglun-" bindtap="toComment"></text>
+    </view>
+
+</view>

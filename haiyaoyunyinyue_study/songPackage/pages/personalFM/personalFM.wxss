@@ -1,0 +1,149 @@
+@import "/static/iconfont/iconfont.wxss";
+/* 私人FM界面样式 */
+.pageContainer {
+    height: 100%;
+    background: linear-gradient(#bdeaf1,white);
+}
+
+.pageContainer .songInfo {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 25rpx;
+}
+
+.pageContainer .songInfo text {
+    width: 640rpx;
+    height: 100rpx;
+    line-height: 100rpx;
+    margin: auto;
+    text-align: center;
+    padding-left: 20rpx;
+    color: black;
+}
+
+.songInfo .songName {
+    display: block;
+    width: 100%;
+    text-align: right;
+    overflow: hidden;
+    -webkit-animation: marquee 1s linear infinite;
+    animation: marquee 20s linear infinite;
+}
+
+/*控制歌名往左走功能*/
+@-webkit-keyframes marquee {
+    /* 0%往左走，100%往右走 */
+    50% {
+        transform: translateX(20%);
+    }
+    /* 0%往左走，100%往右走 */
+    50% {
+        transform: translateX(-20%);
+    }
+}
+
+@keyframes marquee {
+    /* 这里两个参数是调节各自移动的速度？ */
+    70% {
+        transform: translateX(20%);
+    }
+    30% {
+        transform: translateX(-20%);
+    }
+}
+
+@-webkit-keyframes marquee {
+    50% {
+        transform: translateX(20%);
+    }
+    50% {
+        transform: translateX(-20%);
+    }
+}
+
+.imageContainer {
+    height: 550rpx;
+}
+
+.imageContainer .songPic {
+    width: 450rpx;
+    height: 450rpx;
+    line-height: 450rpx;
+    margin: 60rpx 150rpx;
+    border-radius: 30rpx;
+}
+
+/* 歌词区域样式 */
+/* 歌词显示 */
+.scrollLrc {
+    bottom: 280rpx;
+    height: 120rpx;
+    line-height: 120rpx;
+    text-align: center;
+    color: black;
+}
+
+/* 底部控制区域 */
+.musicControl {
+    position: absolute;
+    bottom: 40rpx;
+    left: 0;
+    width: 100%;
+    display: flex;
+}
+
+.musicControl text {
+    width: 20%;
+    height: 150rpx;
+    line-height: 150rpx;
+    text-align: center;
+    color: black;
+    font-size: 50rpx;
+}
+
+.musicControl .big {
+    font-size: 90rpx;
+}
+
+/* 进度条控制区域 */
+.progressControl {
+    position: absolute;
+    bottom: 200rpx;
+    width: 740rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    display: flex;
+    color: black;
+}
+
+/* 总进度条 */
+.barControl {
+    position: relative;
+    width: 550rpx;
+    height: 4rpx;
+    margin: auto;
+    background: rgba(224, 216, 216, 0.64);
+    border-radius: 20rpx;
+}
+
+/* 实时进度条 */
+.audio-currentTime-Bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    height: 4rpx;
+    background: #d76262;
+}
+
+/* 进度条小圆球 */
+.audio-circle {
+    position: absolute;
+    right: -12rpx;
+    top: -4rpx;
+    width: 12rpx;
+    height: 12rpx;
+    border-radius: 50%;
+    background: #000000;
+}

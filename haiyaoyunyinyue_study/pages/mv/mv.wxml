@@ -1,0 +1,54 @@
+<view class="videoContainer">
+    <!-- 头部区域 -->
+    <view class="header">
+        <image src="/static/images/video/shouye.png" bindtap="toIndex"></image>
+        <view class="search" bindtap="toSearchSongs">
+            搜索歌曲
+        </view>
+        <image src="/static/images/video/header1.png" bindtap="toSongDetail"></image>
+    </view>
+
+    <!-- 导航区域 -->
+    <view class="mvTopTitle">
+        <text>最新MV排行榜</text>
+    </view>
+
+    <!-- 视频列表区域 -->
+    <scroll-view
+            scroll-y
+            class="videoScroll"
+            refresher-enabled="true"
+            bindrefresherrefresh="handleRefresher"
+            refresher-triggered="{{isTriggered}}"
+            bindscrolltolower="handleToLower">
+        <view class="videoItem" wx:for="{{latestMVList}}" wx:key="id">
+            <video src="{{mvInfoList[index]}}"
+                   bindplay="handlePlay"
+                   id="{{item.id}}"
+                   poster="{{item.cover}}"
+                   class="common"
+                   wx:if="{{videoIdNum === item.id}}"
+                   object-fit="cover"
+                   bindtimeupdate="handleTimeUpdate"
+                   bindended="handleEnded"
+            ></video>
+
+            <!-- 视频播放性能优化：使用image图片代替video标签 -->
+            <image wx:else bindtap="handlePlay" id="{{item.id}}" class="common" src="{{item.cover}}"></image>
+
+            <!-- 视频标题 -->
+            <view class="content" data-id="{{item.id}}" bindtap="toShowMVComment">{{item.artistName}} - {{item.name}}
+                <!-- 视频下方的点赞、评论和更多选项 -->
+                <!--                <view class="footer">-->
+                <!--                <image class="avatar" src="{{item.data.creator.avatarUrl}}"></image>-->
+                <view class="comments_praised">
+                    <text class="item">
+                        <text class="iconfont icon-bofangcishu"></text>
+                        <text class="count">{{item.playCount}}</text>
+                    </text>
+                </view>
+            </view>
+        </view>
+    </scroll-view>
+
+</view>

@@ -1,0 +1,107 @@
+/* pages/radio/radio.wxss */
+/* 设置视频界面的头部样式 */
+.radioContainer .header {
+    display: flex;  /*让头部水平排列*/
+    padding: 10rpx;
+}
+/* 设置视频头部的图片样式 */
+.radioContainer .header image{
+    width: 60rpx;
+    height: 60rpx;
+}
+
+/* 设置视频界面的搜索框样式 */
+.radioContainer .header .search {
+    border: 1rpx solid #eee;
+    border-radius: 130rpx;
+    /* flex-grow：可拉伸 flex-shrink：可压缩 flex-basis：当前元素的宽度 */
+    /* flex默认值：flex-grow：0, flex-shrink：1, flex-basis：auto */
+    /* flex:1  flex-grow：1, flex-shrink：1, flex-basis：0% */
+    /* flex:auto  flex-grow：1, flex-shrink：1, flex-basis：auto */
+    /* flex:1  会导致父元素宽度自动为100% */
+    flex: 1;
+    margin: 4rpx 17rpx;
+    font-size: 26rpx;
+    text-align: center;
+    line-height: 60rpx;
+    color: #bfbdbd;
+}
+/* 设置播放全部点击样式 */
+.playAll {
+    margin-left: 20rpx;
+    padding-left: 15rpx;
+    height: 60rpx;
+    width: 180rpx;
+    border-radius: 25rpx;
+    border: 1rpx solid #eee;
+}
+.playAllBtn {
+    position: relative;
+    top: 10rpx;
+    width: 40rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+}
+/* 设置点击效果 */
+.detail-hover {
+    opacity: 0.9;
+    /*transform: scale(0.9,0.9);   !* 设置缩放 *!*/
+    background: #eee;
+}
+
+/* 电台列表样式 */
+.radioList {
+    /* 设置窗口视图大小，使用calc()函数 */
+    height: calc(100vh - 170rpx);
+}
+/* 每个电台节目的样式 */
+.radioList .radioItem {
+    position: relative;
+    margin: 0 15rpx;
+    height: 150rpx;
+    line-height: 150rpx;
+    display: flex;
+}
+
+/* 电台封面样式 */
+.radioList .radioItem .radioPic {
+    width: 130rpx;
+    height: 130rpx;
+    line-height: 130rpx;
+    margin: 10rpx 10rpx;
+    border-radius: 15rpx;
+}
+
+.radioList .radioItem .radioText {
+    display: flex;
+    flex-direction: column;
+
+}
+
+/* 电台描述 */
+.radioList .radioItem text {
+    height: 75rpx;
+    line-height: 75rpx;
+    width: 520rpx;
+    font-size: 24rpx;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 10rpx;
+}
+
+.radioList .radioItem .radioTitle {
+    font-size: 32rpx;
+    font-family: 方正舒体;
+}
+
+.radioList .radioItem .radioName {
+    font-family: "Microsoft JhengHei";
+}
+
+.playRadio {
+    position: absolute;
+    left: 40rpx;
+    color: rgba(255, 254, 254, 0.6);
+    font-size: 70rpx;
+}

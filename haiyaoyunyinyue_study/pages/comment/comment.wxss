@@ -1,0 +1,166 @@
+/* pages/comment/comment.wxss */
+/* 评论区头部样式 */
+.ListContainer {
+    position: relative;
+    top: 10rpx;
+    line-height: 350rpx;
+    padding: 0 20rpx;
+    border-radius: 30rpx;
+    background: white;
+}
+.header {
+    height: 80rpx;
+    line-height: 80rpx;
+    border-bottom: 1rpx solid #eee;
+}
+/* 内容区样式 */
+.commentList {
+    height: calc(100vh - 255rpx);
+}
+
+.listItem {
+    position: relative;
+    line-height: 250rpx;
+    /*margin-bottom: 20rpx;*/
+    /*border-bottom: 1rpx solid #eee;*/
+    border-radius: 20rpx;
+    margin-bottom: 10rpx;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 35rpx;
+    border-bottom: 1rpx solid #eee;
+}
+
+.touxiang {
+    width: 80rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    border-radius: 50%;
+    margin-right: 10rpx;
+}
+
+.listItem .userInfo {
+    display: flex;
+    margin-bottom: 10rpx;
+}
+
+.listItem text {
+    position: relative;
+    line-height: 50rpx;
+    font-size: 28rpx;
+    max-width: 650rpx;
+    white-space: pre-wrap;
+    overflow: scroll;
+    /*text-overflow: revert;*/
+}
+.userName {
+    font-family: 幼圆;
+}
+
+/* 评论内容 */
+.commentContent {
+    position: relative;
+}
+
+.listItem .dianzan {
+     position: absolute;
+     right: 25rpx;
+}
+
+.listItem .dianzan text {
+    position: absolute;
+    top: 50rpx;
+    right: 0rpx;
+    font-size: 20rpx;
+}
+
+.count {
+    position: absolute;
+    font-size: 20rpx;
+    left: 600rpx;
+    width: 150rpx;
+    border: 1rpx solid black;
+}
+
+/* 底部播放器的样式 */
+.discContainer {
+    display: flex;
+    position: relative;
+    bottom: 0rpx;
+    width: 100%;
+    height: 160rpx;
+    line-height: 160rpx;
+    border-top: 1rpx solid #decaca;
+    background-color: white;
+}
+/* 底部左边磁盘样式 */
+.myDisc {
+    height: 150rpx;
+    line-height: 150rpx;
+    width: 150rpx;
+    margin-left: 20rpx;
+    margin-top: 3rpx;
+}
+
+.myDisc image {
+    width: 150rpx;
+    height: 150rpx;
+    line-height: 150rpx;
+}
+
+.myDisc .picUrl {
+    position: absolute;
+    border-radius: 50%;
+    left: 30rpx;
+    top: 13rpx;
+    width: 130rpx;
+    height: 130rpx;
+    line-height: 130rpx;
+}
+
+/* 底部中间歌曲信息样式 */
+.songInfo {
+    display: flex;
+    flex-direction: column;
+    width: 380rpx;
+    height: 130rpx;
+    line-height: 130rpx;
+    margin-left: 10rpx;
+    margin-top: 15rpx;
+}
+
+.songInfo text {
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 26rpx;
+    max-width: 550rpx;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: auto;
+}
+
+.songInfo .songName {
+    font-size: 30rpx;
+}
+
+/* 底部右边菜单样式 */
+.menus {
+    display: flex;
+    width: 370rpx;
+    margin-left: 10rpx;
+    height: 130rpx;
+    line-height: 130rpx;
+    margin-top: 5rpx;
+}
+
+.menus .iconfont {
+    margin: auto;
+    font-size: 33rpx;
+}
+
+.menus .isPlay {
+    font-size: 70rpx;
+}
+
+

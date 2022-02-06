@@ -1,0 +1,14 @@
+<!-- 电台 -->
+<view class="radioContainer">
+
+    <scroll-view scroll-y class="radioList" >
+        <view class="myView">
+            <view class="radioItem" wx:for="{{UserRadioList}}" wx:key="picId"
+                  bindtap="toShowProgram" id="{{item.djRadio.id}}">
+                <image class="radioPic" src="{{item.djRadio.picUrl}}"></image>
+                <text class="radioTitle">{{item.djRadio.name}}</text>
+            </view>
+        </view>
+    </scroll-view>
+
+</view>

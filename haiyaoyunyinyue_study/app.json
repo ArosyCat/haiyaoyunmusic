@@ -1,0 +1,93 @@
+{
+  "pages": [
+    "pages/personal/personal",
+    "pages/index/index",
+    "pages/personalIndex/personalIndex",
+    "pages/mv/mv",
+    "pages/moreSongList/moreSongList",
+    "pages/personalPlayListDetail/personalPlayListDetail",
+    "pages/radio/radio",
+    "pages/program/program",
+    "pages/search/search",
+    "pages/video/video",
+    "pages/mySongList/mySongList",
+    "pages/comment/comment",
+    "pages/topList/topList",
+    "pages/searchList/searchList",
+    "pages/login/login",
+    "pages/mvComment/mvComment"
+  ],
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "window": {
+    "navigationBarBackgroundColor": "#000000",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "海妖云音乐"
+  },
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#d43c33",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "主页",
+        "iconPath": "/static/images/tabs/home.png",
+        "selectedIconPath": "/static/images/tabs/home-current.png"
+      },
+      {
+        "pagePath": "pages/video/video",
+        "text": "视频",
+        "iconPath": "/static/images/tabs/select.png",
+        "selectedIconPath": "/static/images/tabs/selected.png"
+      },
+      {
+        "pagePath": "pages/personal/personal",
+        "text": "个人中心",
+        "iconPath": "/static/images/tabs/personal.png",
+        "selectedIconPath": "/static/images/tabs/personal-current.png"
+      }
+    ]
+  },
+  "requiredBackgroundModes": [
+    "audio"
+  ],
+  "subpackages": [
+    {
+      "root": "songPackage",
+      "pages": [
+        "pages/recommendSong/recommendSong",
+        "pages/songDetail/songDetail",
+        "pages/playlist/playlist",
+        "pages/personalFM/personalFM",
+        "pages/personalPlayList/personalPlayList",
+        "pages/personalRadio/personalRadio",
+        "pages/personalCollected/personalCollected",
+        "pages/similarSinger/similarSinger",
+        "pages/similarSong/similarSong",
+        "pages/singerPage/singerPage"
+      ],
+      "independent": true
+    },
+    {
+      "root": "otherPackage",
+      "name": "other",
+      "pages": [
+        "pages/other/other",
+        "pages/songLyric/songLyric"
+      ]
+    }
+  ],
+  "preloadRule": {
+    "pages/index/index": {
+      "packages": [
+        "songPackage"
+      ]
+    },
+    "pages/video/video": {
+      "packages": [
+        "songPackage"
+      ]
+    }
+  }
+}

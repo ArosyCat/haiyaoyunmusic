@@ -1,0 +1,190 @@
+@import "/static/iconfont/iconfont.wxss";
+page {
+    height: 100%;
+}
+.songDetailContainer {
+    height: 100%;
+    background: linear-gradient(#dad3cc,white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.songDetailContainer .musicName {
+    position: relative;
+    top: -450rpx;
+    margin-top: auto;
+    padding: 30rpx;
+    font-size: larger;
+    font-family: 細明體_HKSCS-ExtB;
+    font-weight: bold;
+    color: black;
+}
+
+.songDetailContainer .author {
+    position: relative;
+    top: -450rpx;
+    font-size: large;
+    font-family: 細明體_HKSCS-ExtB;
+    color: black;
+}
+
+/* 摇杆 */
+/*.needle {*/
+/*    position: relative;*/
+/*    left: 60rpx;*/
+/*    width: 192rpx;*/
+/*    height: 274rpx;*/
+/*}*/
+
+/* 磁盘 */
+.discContainer {
+    position: relative;
+    top: -400rpx;
+    width: 587rpx;
+    height: 587rpx;
+}
+
+/* 磁盘动画 */
+.disAnimation {
+    /*
+    参数1：别名
+    参数2：过渡时间5秒
+    参数3：过渡方式平衡过渡
+    参数4：infinite：无限循环
+    */
+    animation: disc 13s linear infinite forwards;
+    animation-play-state: running;
+}
+/* 控制磁盘旋转停止的功能 */
+.paused {
+    animation: disc 13s linear infinite forwards;
+    animation-play-state: paused;
+}
+
+/*
+    @keyframes：设置动画帧
+        1）from to
+            - 适用于简单的动画，只有起始帧和结束帧
+            - 北京  - 上海   直达
+        2）百分比
+            - 多用于复杂动画，动画不止两帧
+            - 北京  - 上海   ---> 北京 -- 天津 -- 深圳 -- 上海
+            - 0% - 100%，可以任意拆分
+*/
+@keyframes disc {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/*@-webkit-keyframes disc {*/
+/*    from {*/
+/*        transform: rotate(0deg);*/
+/*    }*/
+/*    to {*/
+/*        transform: rotate(360deg);*/
+/*    }*/
+/*}*/
+
+/* 磁盘大小样式设置 */
+.disc {
+    z-index: 97;
+    position: relative;
+    top: 0rpx;
+    right: 0rpx;
+    width: 598rpx;
+    height: 598rpx;
+}
+
+/* 音乐封面样式 */
+.musicImg {
+    z-index: 99;
+    position: absolute;
+    top: 0rpx;
+    right: 0rpx;
+    bottom: 0;
+    left: 3rpx;
+    margin: auto;
+    width: 500rpx;
+    height: 500rpx;
+    border-radius: 50%;
+}
+
+/* 歌词显示 */
+.scrollLrc {
+    position: absolute;
+    bottom: 280rpx;
+    width: 640rpx;
+    height: 120rpx;
+    line-height: 120rpx;
+    text-align: center;
+    color: black;
+}
+
+/* 底部控制区域 */
+.musicControl {
+    position: absolute;
+    bottom: 40rpx;
+    left: 0;
+    width: 100%;
+    display: flex;
+}
+
+.musicControl text {
+    width: 20%;
+    height: 150rpx;
+    line-height: 150rpx;
+    text-align: center;
+    color: black;
+    font-size: 50rpx;
+}
+
+.musicControl .big {
+    font-size: 90rpx;
+}
+
+/* 进度条控制区域 */
+.progressControl {
+    position: absolute;
+    bottom: 200rpx;
+    width: 740rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    display: flex;
+    color: black;
+}
+
+/* 总进度条 */
+.barControl {
+    position: relative;
+    width: 550rpx;
+    height: 4rpx;
+    margin: auto;
+    background: rgba(224, 216, 216, 0.64);
+    border-radius: 20rpx;
+}
+
+/* 实时进度条 */
+.audio-currentTime-Bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    height: 4rpx;
+    background: #d76262;
+}
+
+/* 进度条小圆球 */
+.audio-circle {
+    position: absolute;
+    right: -12rpx;
+    top: -4rpx;
+    width: 12rpx;
+    height: 12rpx;
+    border-radius: 50%;
+    background: #000000;
+}

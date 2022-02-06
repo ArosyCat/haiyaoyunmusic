@@ -1,0 +1,59 @@
+<!-- 相似歌手页面 -->
+<view class="pageContainer">
+
+    <!-- 需要搜索的歌手信息 -->
+    <view class="singerInfo">
+        <!-- 头像 -->
+        <view class="pic">
+            <image src="{{singerDetail.artist.picUrl}}"></image>
+        </view>
+        <!-- 歌手名 -->
+        <view class="singerName">
+            <text>{{singerDetail.artist.name}}</text>
+            <image src="{{isOpen ? '/static/images/tabs/shouqi.png' : '/static/images/tabs/zhankai.png'}}" bindtap="openIntroduce"></image>
+        </view>
+
+    </view>
+    <!-- 需要搜索的歌手介绍 -->
+    <view class="content {{isOpen ? 'on' : ''}}">
+        <view class="scrollItem">
+            <text>{{singerDetail.artist.briefDesc}}</text>
+        </view>
+    </view>
+
+    <!-- 相似歌手列表 -->
+    <view class="text" style="margin: 10rpx 30rpx;font-family: 微软雅黑;font-size: 32rpx;">
+        <text style="border-bottom: 1rpx solid #888888;">相似歌手</text>
+    </view>
+
+    <!-- 内容区 -->
+    <view scroll-y class="listScroll" wx:for="{{similarList}}" wx:key="id">
+        <view class="scrollItem">
+
+            <view class="first">
+                <!-- 其他歌手信息 -->
+                <view class="searchPic" style="height: 160rpx;">
+                    <image src="{{item.picUrl}}" bindtap="toSingerPage" data-id="{{item.id}}"></image>
+                </view>
+                <view class="searchSingerInfo">
+                    <text class="singerName" style="font-size: 34rpx;">{{item.name}}</text>
+                    <image class="_isOpen"
+                           src="{{similarListIsOpen[index] ? '/static/images/tabs/shouqi.png' : '/static/images/tabs/zhankai.png'}}"
+                           bindtap="openSearchSingerIntro"
+                           data-index="{{index}}">
+                    </image>
+                </view>
+            </view>
+
+            <!-- 需要搜索的歌手介绍 -->
+            <view class="content {{similarListIsOpen[index] ? 'on' : ''}}">
+                <view class="otherIntro">
+                    <text>{{otherSingerDetail[index].briefDesc}}</text>
+                </view>
+            </view>
+
+        </view>
+    </view>
+
+</view>
+

@@ -1,0 +1,28 @@
+<!-- 电台 -->
+<view class="radioContainer">
+    <view class="header">
+        <image src="/static/images/video/header2.png" bindtap="toVideo"></image>
+        <view class="search" bindtap="toSearchSongs">
+            搜索节目
+        </view>
+        <image src="/static/images/video/header1.png" bindtap="toSongDetail"></image>
+    </view>
+
+    <view class="playAll" hover="true" hover-class="detail-hover" bindtap="toPlayAll" id="{{pid}}" data-index="0">
+        <text>播放全部</text>
+        <image class="playAllBtn" src="/static/images/recommendSong/111.png"></image>
+    </view>
+
+    <scroll-view scroll-y class="radioList" >
+        <view class="radioItem" wx:for="{{programList}}" wx:key="picId">
+            <image class="radioPic" src="{{item.coverUrl}}" id="{{item.mainSong.id}}" bindtap="toPlayProgram" data-index="{{index}}"></image>
+            <view wx:if="{{pid === item.mainSong.id}}" class="iconfont playRadio {{isPlay ? 'icon-zanting' : 'icon-bofang'}}"
+                  id="{{item.mainSong.id}}" bindtap="toPlayProgram" data-index="{{index}}"></view>
+            <view class="radioText">
+                <text class="radioTitle">{{item.name}}</text>
+                <text class="radioName">{{item.description}}</text>
+            </view>
+        </view>
+    </scroll-view>
+
+</view>

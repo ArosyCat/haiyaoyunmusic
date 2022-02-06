@@ -1,0 +1,46 @@
+<view class="personalCollectedContainer">
+    <view class="helpContainer" wx:for="{{userCollectedList}}" wx:key="id" wx:for-item="userCollectedListItem">
+        <view class="personalCollectedItem">
+            <view class="imageContainer">
+                <image src="{{userCollectedListItem.picUrl}}"></image>
+            </view>
+            <view class="itemInfo">
+                <text>{{userCollectedListItem.name}}</text>
+                <text>{{userCollectedListItem.artists[0].name}}</text>
+            </view>
+            <view class="showMoreContainer" bindtap="showMore" data-index="{{index}}" data-id="{{userCollectedListItem.id}}">
+                <image src="{{isOpenList[index] ? '/static/images/tabs/shouqi.png' : '/static/images/tabs/zhankai.png'}}"></image>
+            </view>
+        </view>
+
+
+        <view class="content {{isOpenList[index] ? 'on' : ''}}">
+<!--            {{albumInfoList[index].album.description}}-->
+
+            <view class="scrollItem" wx:for="{{albumInfoList[index].songs}}" wx:key="id" data-index="{{index}}" data-song='{{item}}'
+                  bindtap="handlePlay"
+                  hidden="{{index < 2 ? false : currentAlbumId===userCollectedListItem.id ? initHide : true}}" >
+                <image src="{{item.al.picUrl}}"></image>
+                <view class="musicInfo">
+                    <text class="musicName">{{item.name}}</text>
+                    <text class="author">{{item.ar[0].name}} - {{item.al.name}}</text>
+                </view>
+                <text wx:if="{{!isMultipleModel}}" class="iconfont icon-gengduo2"></text>
+                <image wx:else class="icon-xuanze" src="{{selectedIndexList[index] ? '/static/images/recommendSong/xuanze.png' : '/static/images/recommendSong/weixuanze.png'}}"></image>
+            </view>
+
+        </view>
+    </view>
+</view>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,68 @@
+/* pages/radio/radio.wxss */
+/* 设置视频界面的头部样式 */
+.radioContainer .header {
+    display: flex;  /*让头部水平排列*/
+    padding: 10rpx;
+}
+/* 设置视频头部的图片样式 */
+.radioContainer .header image{
+    width: 60rpx;
+    height: 60rpx;
+}
+
+/* 设置视频界面的搜索框样式 */
+.radioContainer .header .search {
+    border: 1rpx solid #eee;
+    border-radius: 130rpx;
+    /* flex-grow：可拉伸 flex-shrink：可压缩 flex-basis：当前元素的宽度 */
+    /* flex默认值：flex-grow：0, flex-shrink：1, flex-basis：auto */
+    /* flex:1  flex-grow：1, flex-shrink：1, flex-basis：0% */
+    /* flex:auto  flex-grow：1, flex-shrink：1, flex-basis：auto */
+    /* flex:1  会导致父元素宽度自动为100% */
+    flex: 1;
+    margin: 4rpx 17rpx;
+    font-size: 26rpx;
+    text-align: center;
+    line-height: 60rpx;
+    color: #bfbdbd;
+}
+/* 电台列表样式 */
+.radioList {
+    /* 设置窗口视图大小，使用calc()函数 */
+    height: calc(100vh - 100rpx);
+}
+
+.myView {
+    width: 100%;
+    display: flex;
+    align-content: flex-start;
+    flex-flow: row wrap;
+}
+
+.radioItem {
+    width: 200rpx;
+    height: 200rpx;
+    flex: 0 0 25%;
+    margin-left: 40rpx;
+    margin-bottom: 100rpx;
+}
+
+.radioItem .radioPic {
+    width: 200rpx;
+    height: 200rpx;
+    line-height: 200rpx;
+    border-radius: 20rpx;
+}
+
+.radioTitle {
+    position: relative;
+    font-size: 24rpx;
+    width: 200rpx;
+    /* 多行文本溢出隐藏 省略号代替 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;  /* -webkit模型 */
+    -webkit-box-orient: vertical; /* 设置对齐模式 */
+    -webkit-line-clamp: 2;  /* 设置多行的行数，2行文本，超过隐藏 */
+
+}

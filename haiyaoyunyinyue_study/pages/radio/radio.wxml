@@ -1,0 +1,21 @@
+<!-- 电台 -->
+<view class="radioContainer">
+    <view class="header">
+        <image src="/static/images/video/header2.png" bindtap="toVideo"></image>
+        <view class="search" bindtap="toSearchSongs">
+            搜索电台
+        </view>
+        <image src="/static/images/video/header1.png" bindtap="toSongDetail"></image>
+    </view>
+
+    <scroll-view scroll-y class="radioList" >
+        <view class="myView">
+            <view class="radioItem" wx:for="{{hotRadioDetailList}}" wx:key="picId"
+                  bindtap="toShowProgram" id="{{item.djRadio.id}}">
+                <image class="radioPic" src="{{item.djRadio.picUrl}}"></image>
+                <text class="radioTitle">{{item.djRadio.name}}</text>
+            </view>
+        </view>
+    </scroll-view>
+
+</view>

@@ -1,0 +1,26 @@
+<view class="personalSongListContainer">
+
+    <!-- 推荐歌单区域 -->
+    <view class="recommendContainer" wx:for="{{hotPlayListDetail}}" wx:key="id"
+          wx:for-item="hotPlayListDetail">
+        <view class="title">{{hotPlayListDetail.cat}}
+            <view class="forYou">为你精心推荐</view>
+        </view>
+        <!-- 内容区 -->
+        <scroll-view class="recommendScroll" enable-flex scroll-x>
+            <!-- 滑块 -->
+            <view class="scrollItem" wx:for="{{hotPlayListDetail.playlists}}"
+                  wx:key="cat" wx:for-item="item" data-id="{{item.id}}"
+                  bindtap="toPlayList">
+                <image src="{{item.coverImgUrl}}"></image>
+                <text>{{item.name}}</text>
+            </view>
+        </scroll-view>
+    </view>
+
+</view>
+
+
+
+
+

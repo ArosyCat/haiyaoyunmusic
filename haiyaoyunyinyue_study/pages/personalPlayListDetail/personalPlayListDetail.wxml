@@ -1,0 +1,46 @@
+<!-- 个人歌单列表详情 -->
+<view class="ListContainer">
+    <view class="listHeader">
+        <text bindtap="playAll">播放全部</text>
+        <image class="playAll" src="/static/images/recommendSong/111.png" bindtap="playAll"></image>
+        <text class="changeMore">多选</text>
+    </view>
+
+    <!-- 内容区 -->
+    <scroll-view scroll-y class="listScroll">
+        <view class="scrollItem" wx:for="{{tracks}}" wx:key="id" data-index="{{index}}" data-song='{{item}}' bindtap="toHandlePlay">
+            <image src="{{item.al.picUrl}}"></image>
+            <view class="musicInfo">
+                <text class="musicName">{{item.name}}</text>
+                <text class="author">{{item.ar[0].name}} - {{item.al.name}}</text>
+            </view>
+            <text class="iconfont icon-gengduo2"></text>
+        </view>
+    </scroll-view>
+
+    <!-- 底部 -->
+    <view class="discContainer">
+        <!-- 底部磁盘 -->
+        <view class="myDisc">
+            <image src="/static/images/song/444.png"></image>
+            <image wx:if="{{song.al.picUrl}}" class="picUrl" src="{{song.al.picUrl}}" bindtap="toSongDetail"></image>
+            <image wx:else class="picUrl" src="/static/images/song/disc.png"></image>
+        </view>
+        <!-- 底部歌曲详情 -->
+        <view class="songInfo">
+            <text class="songName">{{song.name}}</text>
+            <text class="songAuthor">{{song.ar[0].name}}</text>
+        </view>
+        <!-- 底部播放 / 暂停等功能 -->
+        <view class="menus">
+            <view class="iconfont icon-shangyishou" id="pre" bindtap="handleSwitch"></view>
+            <view class="iconfont {{isPlay ? 'icon-zanting' : 'icon-bofang'}} isPlay" bindtap="handlePlay"></view>
+            <view class="iconfont icon-xiayishou" id="next" bindtap="handleSwitch"></view>
+        </view>
+
+    </view>
+</view>
+
+
+
+
