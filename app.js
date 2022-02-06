@@ -50,8 +50,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 // 注册获取用户唯一标识的接口
 app.use('/getOpenId', async (req, res, next) => {
   let code = req.query.code;
-  let appId = 'wxc8ef46c7331426c0';
-  let appSecret = '820f5ab88b8f4d56f87c08fa1d8db2ce';
+  let appId = 'xxx';
+  let appSecret = 'xxx';
   let url = `https://api.weixin.qq.com/sns/jscode2session?appid=${appId}&secret=${appSecret}&js_code=${code}&grant_type=authorization_code`
   // 发请求给微信服务器获取openId
   let result = await fly.get(url);
