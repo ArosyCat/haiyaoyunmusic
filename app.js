@@ -6,16 +6,10 @@ const request = require('./util/request')
 const packageJSON = require('./package.json')
 const exec = require('child_process').exec
 const cache = require('apicache').middleware
+const Fly=require("flyio/src/node");
+const fly=new Fly;
+const jwt = require('jsonwebtoken');
 
-// version check
-exec('npm info NeteaseCloudMusicApi version', (err, stdout, stderr) => {
-  if(!err){
-    let version = stdout.trim()
-    if(packageJSON.version < version){
-      console.log(`最新版本: ${version}, 当前版本: ${packageJSON.version}, 请及时更新`)
-    }
-  }
-})
 
 const app = express()
 
@@ -53,6 +47,34 @@ app.use(cache('2 minutes', ((req, res) => res.statusCode === 200)))
 // static
 app.use(express.static(path.join(__dirname, 'public')))
 
+// 注册获取用户唯一标识的接口
+app.use('/getOpenId', async (req, res, next) => {
+  let code = req.query.code;
+  let appId = 'wxc8ef46c7331426c0';
+  let appSecret = '820f5ab88b8f4d56f87c08fa1d8db2ce';
+  let url = `https://api.weixin.qq.com/sns/jscode2session?appid=${appId}&secret=${appSecret}&js_code=${code}&grant_type=authorization_code`
+  // 发请求给微信服务器获取openId
+  let result = await fly.get(url);
+  let openId = JSON.parse(result.data).openid;
+   console.log('openId', openId);
+   // 自定义登录态
+   let person = {
+     username: 'ArosyCat',
+     age: 18,
+     openId
+   }
+   // openId要保密，不能暴露给其他人
+   // 对用户的数据进行加密，生成token返回给客户端
+  let token = jwt.sign(person, 'arosycatatguigu');
+  console.log(token);
+  // 验证身份，反编译token
+  let result2 = jwt.verify(token, 'arosycatatguigu');
+  console.log(result2);
+  res.send(token);
+});
+
+
+
 // router
 const special = {
   'daily_signin.js': '/daily_signin',
@@ -61,11 +83,17 @@ const special = {
 }
 
 fs.readdirSync(path.join(__dirname, 'module')).reverse().forEach(file => {
+  // console.log(file);
   if(!file.endsWith('.js')) return
+  // album_newest.js  ---> /album_newest.js ---> /album_newest ---> /album/newest
   let route = (file in special) ? special[file] : '/' + file.replace(/\.js$/i, '').replace(/_/g, '/')
   let question = require(path.join(__dirname, 'module', file))
 
   app.use(route, (req, res) => {
+    console.log(route);
+    console.log(req)
+    console.log('------');
+    console.log(req.cookies)
     let query = Object.assign({}, req.query, req.body, {cookie: req.cookies})
     question(query, request)
       .then(answer => {
@@ -86,7 +114,8 @@ const port = process.env.PORT || 3000
 const host = process.env.HOST || ''
 
 app.server = app.listen(port, host, () => {
-  console.log(`server running @ http://${host ? host : 'localhost'}:${port}`)
+  console.log('欢迎使用海妖云音乐服务器');
+  console.log('服务器地址： http://localhost:3000')
 })
 
 module.exports = app
